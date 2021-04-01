@@ -1,6 +1,14 @@
 # foozam
 shazam for food
 
+## Setting Up
+
+install all the required dependencies
+
+```bash
+pip3 install -r requirements.txt
+```
+
 ## Scraping food images from google
 
 run the __scrape.py__ along with keywords of images with __-s__ or __--search__ flag
