@@ -3,7 +3,9 @@ shazam for food
 
 ## Setting Up
 
-install all the required dependencies
+Install all the required dependencies in the requirements.txt
+
+You can install using the below command.
 
 ```bash
 pip3 install -r requirements.txt
