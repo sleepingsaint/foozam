@@ -35,7 +35,7 @@ def download_image(image, storage_path):
     with open(filename, "wb") as f:
         f.write(req.content)     
     print(filename)
-    
+
 def scrape(search_input, iter = 0):
     query = "+".join(search_input.split(" "))
     driver.get(BASE_URL + query)
@@ -77,7 +77,7 @@ def scrape(search_input, iter = 0):
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(description="command line python script to scrape google images")
     arg_parser.add_argument("-s", "--search", type=str, nargs="*", help="python3 scrape.py -s coke 'hot dog'")
-    arg_parser.add_argument("-i", "--iter", type=int, help="Number of time load more results to be clicked", default=2)
+    arg_parser.add_argument("-i", "--iter", type=int, help="Number of time load more results to be clicked", default=0)
     args = arg_parser.parse_args()
 
     if len(args.search) == 0:
