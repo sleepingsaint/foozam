@@ -25,3 +25,14 @@ after scraping all the images will be stored in images/<keyword> folder
 image/ <br />
 |__ burger/ <br /> 
 |__ hot_dog/
+
+
+To load more pictures by clicking __load more results__ pass the number of time using __-i__ or __--iter__ flag
+
+```
+python3 scrape.py -i 3 -s burger
+```
+
+above script will click on load more results for atmost 3 times (sometimes the results might be less and the load more results button may not be loaded like in final results page.)
+
+* Default value for iter is 0

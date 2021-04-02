@@ -1,2 +1,6 @@
-#### Reference ####
-# https://medium.com/analytics-vidhya/a-simple-selenium-image-scrape-from-an-interactive-google-image-search-on-mac-45d403e60d9a
+#### References ####
+
+For Scraping
+
+1. https://medium.com/analytics-vidhya/a-simple-selenium-image-scrape-from-an-interactive-google-image-search-on-mac-45d403e60d9a
+2. https://gist.github.com/kekeblom/204a609ee295c81c3cc202ecbe68752c

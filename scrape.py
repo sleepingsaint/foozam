@@ -5,12 +5,25 @@ import uuid
 import time
 import os
 import argparse
+import base64
+import re
 
 BASE_URL = "https://www.google.com/search?tbm=isch&q="
 
-search_input = "hot dog"
-
 def download_image(image, storage_path):
+    image_url = image.get_attribute('src')
+
+    if image_url is not None and "https" not in image_url:
+        image_data = re.sub('^data:image/.+;base64,', '', image_url)
+        image_content = base64.b64decode(image_data)
+        extension = re.sub('^data:image/', '', image_url).split(';')[0]
+        filename = storage_path + "/" + str(uuid.uuid1()) + "." + extension
+        with open(filename, "wb") as f:
+            f.write(image_content)
+        print(filename)
+
+        return
+    
     image_url = image.get_attribute("data-src")
     
     if image_url is None:
@@ -21,6 +34,7 @@ def download_image(image, storage_path):
     filename = storage_path + "/" + str(uuid.uuid1()) + "." + extension
     with open(filename, "wb") as f:
         f.write(req.content)     
+    print(filename)
     
 def scrape(search_input, iter = 0):
     query = "+".join(search_input.split(" "))
@@ -63,6 +77,7 @@ def scrape(search_input, iter = 0):
 if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(description="command line python script to scrape google images")
     arg_parser.add_argument("-s", "--search", type=str, nargs="*", help="python3 scrape.py -s coke 'hot dog'")
+    arg_parser.add_argument("-i", "--iter", type=int, help="Number of time load more results to be clicked", default=2)
     args = arg_parser.parse_args()
 
     if len(args.search) == 0:
@@ -70,4 +85,4 @@ if __name__ == '__main__':
 
     driver = webdriver.Firefox()
     for s in args.search:
-        scrape(s)
+        scrape(s, args.iter)
